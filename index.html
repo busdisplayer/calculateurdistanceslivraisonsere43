@@ -45,7 +45,7 @@ async function createTable() {
       for (const plat of dataP) {
         // Supposons que tu as déjà obtenu la distance
         try {
-const { dist, time } = await getDistance(chauf[2], chauf[1], plat[2], plat[1]);
+const [ dist, time ] = await getDistance(chauf[2], chauf[1], plat[2], plat[1]);
 console.log(dist);
         console.log(time);
         } catch (err) {
