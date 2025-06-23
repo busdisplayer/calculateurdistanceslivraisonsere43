@@ -6,8 +6,9 @@
   <script>
     const data = [];
     async function getDatas() {
-    const result = await fetch ("https://sheets.googleapis.com/v4/spreadsheets/1clXfkqBSq5w9wYUW7ztSeLYMCjh9mZQGdXhMOs9wzB4/values/Chaufferies!A:C?key=AIzaSyCZ_z9l9uecGSrVRdOD3ISnkte4zeoNPqA");
-    console.log(result);
+      console.log("Fetching Google API");
+    const response = await fetch ("https://sheets.googleapis.com/v4/spreadsheets/1clXfkqBSq5w9wYUW7ztSeLYMCjh9mZQGdXhMOs9wzB4/values/Chaufferies!A:C?key=AIzaSyCZ_z9l9uecGSrVRdOD3ISnkte4zeoNPqA");
+    console.log(response.values);
     }
     getDatas();
   </script>
