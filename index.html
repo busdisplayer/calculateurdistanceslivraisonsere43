@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Calculateur de temps de livraison</title>
+  <title>Comparateur de temps de livraison</title>
   <style>
     table {
       border-collapse: collapse;
@@ -11,26 +11,26 @@
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
+      padding: 6px;
+      text-align: center;
     }
     th {
       background-color: #f2f2f2;
     }
+    th.sub {
+      font-weight: normal;
+      background-color: #fafafa;
+    }
+    th.main {
+      background-color: #e6e6e6;
+    }
   </style>
 </head>
 <body>
-  <h1>Temps de Livraison</h1>
+  <h1>Comparateur de temps de livraison</h1>
   <table id="tableau">
-    <thead>
-      <tr>
-        <th>Chaufferie</th>
-        <th>Plateforme</th>
-        <th>Distance (km)</th>
-        <th>Durée (min)</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
+    <thead id="table-head"></thead>
+    <tbody id="table-body"></tbody>
   </table>
 
   <script>
@@ -73,21 +73,37 @@
     }
 
     async function createTable() {
-      const tbody = document.querySelector("#tableau tbody");
+      const thead = document.getElementById("table-head");
+      const tbody = document.getElementById("table-body");
+
+      // Ligne 1 des en-têtes : vide + noms plateformes
+      let headerRow1 = `<tr><th rowspan="2" class="main">Chaufferie</th>`;
+      plateformes.forEach(p => {
+        headerRow1 += `<th colspan="2" class="main">${p[0]}</th>`;
+      });
+      headerRow1 += `</tr>`;
+
+      // Ligne 2 des en-têtes : distance + durée
+      let headerRow2 = `<tr>`;
+      plateformes.forEach(() => {
+        headerRow2 += `<th class="sub">Distance (km)</th><th class="sub">Durée (min)</th>`;
+      });
+      headerRow2 += `</tr>`;
+
+      thead.innerHTML = headerRow1 + headerRow2;
+
+      // Pour chaque chaufferie
       for (const ch of chaufferies) {
+        let row = `<tr><td>${ch[0]}</td>`;
         for (const pl of plateformes) {
           const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1]);
-          if (distance !== null && duration !== null) {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-              <td>${ch[0]}</td>
-              <td>${pl[0]}</td>
-              <td>${distance.toFixed(2)}</td>
-              <td>${duration.toFixed(1)}</td>
-            `;
-            tbody.appendChild(row);
-          }
+          row += `
+            <td>${distance ? distance.toFixed(2) : "?"}</td>
+            <td>${duration ? duration.toFixed(1) : "?"}</td>
+          `;
         }
+        row += `</tr>`;
+        tbody.innerHTML += row;
       }
     }
 
