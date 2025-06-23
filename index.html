@@ -31,6 +31,13 @@ async function getDistance(ax, ay, bx, by) {
   console.log(result);
   return [result.time, result.distance];
 }
+
+    for (const chauf of dataC) {
+      // Pour chaque chaudière
+      for (const plat of dataP) {
+        console.log(getDistance(chauf.lat, chauf.long, plat.lat, plat.long));
+      }
+    }
   </script>
 </body>
 </html>
