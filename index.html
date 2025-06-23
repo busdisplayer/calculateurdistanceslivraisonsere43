@@ -33,7 +33,7 @@ async function getDistance(ax, ay, bx, by) {
   const result = await response.json();
   console.log("Résultat OSRM");
   console.log(result);
-  return [result.routes.distance, result.routes.duration];
+  return [result.routes[0].distance, result.routes[0].duration];
   } catch (err) {
     console.log(err);
   }
