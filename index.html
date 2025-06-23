@@ -28,6 +28,7 @@ async function getDistance(ax, ay, bx, by) {
   console.log(checkpoint);
   const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${checkpoint}?overview=full&geometries=geojson`);
   const result = await response.json();
+  console.log("Résultat OSRM");
   console.log(result);
   return [result.time, result.distance];
 }
@@ -35,7 +36,7 @@ async function getDistance(ax, ay, bx, by) {
     for (const chauf of dataC) {
       // Pour chaque chaudière
       for (const plat of dataP) {
-        console.log(getDistance(chauf.lat, chauf.long, plat.lat, plat.long));
+        console.log(await getDistance(chauf.lat, chauf.long, plat.lat, plat.long));
       }
     }
   </script>
