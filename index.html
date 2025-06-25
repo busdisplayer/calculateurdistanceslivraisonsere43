@@ -37,10 +37,13 @@
     <tbody id="table-body"></tbody>
   </table>
 </div>
+  <i class="w3-center" id="status"></i>
   <button class="w3-button w3-center" style="display:none" id="createPDF" onclick="createPDF();">Générer le PDF</button>
   <script>
     let chaufferies = [];
     let plateformes = [];
+    const status = document.getElementById('status');
+    status.textContent = "Entrez successivement les deux mots de passe. En cas d'erreur, rechargez la page";
 
     async function fetchChaufferies() {
       try {
