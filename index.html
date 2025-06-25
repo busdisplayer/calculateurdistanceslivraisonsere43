@@ -127,8 +127,18 @@
 let missingPart;
     let missingPartB;
     function mainThread() {
-    missingPart = prompt("Entrez le mot de passe 1/2");
-      missingPartB = prompt("Entrez le mot de passe 2/2");
+         if (localStorage.getItem('missingPart')) {
+        missingPart = localStorage.getItem('missingPart');
+      } else {
+      missingPart = prompt("Entrez le mot de passe (1/2), s'il vous plaît...");
+        localStorage.setItem('missingPart', missingPart);
+      }
+    if (localStorage.getItem('missingPartB')) {
+        missingPartB = localStorage.getItem('missingPartB');
+      } else {
+      missingPartB = prompt("Entrez le mot de passe (2/2), s'il vous plaît...");
+        localStorage.setItem('missingPartB', missingPartB);
+      }
       fetchChaufferies();
     }
     
