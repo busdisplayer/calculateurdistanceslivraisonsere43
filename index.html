@@ -114,7 +114,7 @@
     
     function createPDF() {
         const now = new Date();
-        const nowFormatted = now.getDate() + now.getMonths() + now.getFullYear() + now.getHours() + now.getMinutes + now.getSeconds();
+        const nowFormatted = now.getDate() + now.getMonth() + now.getFullYear() + now.getHours() + now.getMinutes + now.getSeconds();
           console.log(nowFormatted);
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
@@ -125,7 +125,7 @@
             headStyles: { fillColor: [22, 160, 133] }, // Couleur de l'en-tête
           });
       
-          doc.save('calculautomatiquedesdistances.pdf');
+          doc.save(`calculautomatiquedesdistances${nowFormatted}.pdf`);
     }
   </script>
 </body>
