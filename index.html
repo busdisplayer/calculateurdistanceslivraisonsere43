@@ -34,7 +34,7 @@
     <thead id="table-head"></thead>
     <tbody id="table-body"></tbody>
   </table>
-  <button id="createPDF" onclick="createPDF();">Générer le PDF</button>
+  <button style="display:none" id="createPDF" onclick="createPDF();">Générer le PDF</button>
 
   <script>
     let chaufferies = [];
@@ -76,6 +76,7 @@
     }
 
     async function createTable() {
+      document.getElementById('createPDF').style.display = "none";
       const thead = document.getElementById("table-head");
       const tbody = document.getElementById("table-body");
 
@@ -108,6 +109,7 @@
         row += `</tr>`;
         tbody.innerHTML += row;
       }
+      document.getElementById('createPDF').style.display = "block";
     }
 
     fetchChaufferies();
