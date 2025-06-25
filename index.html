@@ -5,6 +5,7 @@
   <title>Comparateur de temps de livraison</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     table {
@@ -150,7 +151,33 @@ let missingPart;
           });
       
           doc.save(`calculautomatiquedesdistances${nowFormatted}.pdf`);
+      createExcel();
     }
+    
+    function createExcel() {
+  const wb = XLSX.utils.book_new(); // Crée un nouveau classeur
+  const table = document.getElementById("tableau"); // Récupère le tableau HTML
+
+  // Convertit le tableau HTML en feuille de calcul
+  const ws = XLSX.utils.table_to_sheet(table);
+
+  // Ajoute la feuille au classeur
+  XLSX.utils.book_append_sheet(wb, ws, "Distances");
+
+  // Format de nom avec timestamp
+  const now = new Date();
+  const nowFormatted = String(now.getDate()).padStart(2, "0") +
+                       String(now.getMonth() + 1).padStart(2, "0") +
+                       String(now.getFullYear()) +
+                       "_" +
+                       String(now.getHours()).padStart(2, "0") +
+                       String(now.getMinutes()).padStart(2, "0") +
+                       String(now.getSeconds()).padStart(2, "0");
+
+  // Télécharge le fichier .xlsx
+  XLSX.writeFile(wb, `comparateur_distances_${nowFormatted}.xlsx`);
+}
+
     mainThread();
     async function getShorter() {
       console.log("GetShorter");
