@@ -111,8 +111,8 @@
     }
 
     fetchChaufferies();
+    
     function createPDF() {
-      function generatePDF() {
         const now = new Date();
         const nowFormatted = now.getDate() + now.getMonths() + now.getFullYear() + now.getHours() + now.getMinutes + now.getSeconds();
           console.log(nowFormatted);
@@ -126,7 +126,6 @@
           });
       
           doc.save('calculautomatiquedesdistances.pdf');
-        }
     }
   </script>
 </body>
