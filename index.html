@@ -112,8 +112,8 @@
         for (const pl of plateformes) {
           const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1], ch[0], pl[0]);
           row += `
-            <td id="dist">${distance ? distance.toFixed(2) : "?"}</td>
-            <td id="temp">${duration ? duration.toFixed(1) : "?"}</td>
+            <td class="dist">${distance ? distance.toFixed(2) : "?"}</td>
+            <td class="temp">${duration ? duration.toFixed(1) : "?"}</td>
           `;
         }
         row += `</tr>`;
@@ -180,35 +180,40 @@ let missingPart;
 }
 
     mainThread();
+    
     async function getShorter() {
       console.log("GetShorter");
-      const table = document.getElementById('tableau');
-      const row = table.querySelectorAll("td");
-      for (const item of row) {
-        const dist = item.querySelectorAll('#dist');
-        let minDist;
-        for (const data of dist) {
-          if (data.textContent < minDist || !minDist) {
-            minDist = data.textContent;
-            console.log(minDist);
+     // const table = document.getElementById('tableau');
+      const rows = table.querySelectorAll("#tableau tbody tr");
+      for (const row of rows) {
+        const distCells = row.querySelectorAll('.dist');
+        let minDist = Infinity;
+        for (const cell of distCells) {
+          const value = parseFloat(cell.textContent);
+          if (!isNaN(value) && val < minDist) {
+            minDist = value;
           }
         }
-        for (const data of dist) {
-          if (minDist == data.textContent) {
-            data.style.color = "red";
+        for (const cell of distCells) {
+          const value = parseFloat(cell.textContent);
+          if (minDist == value) {
+            cell.style.color = "red";
+            cell.style.fontWeight = "bold";
           }
         }
-         const temp = item.querySelectorAll('#temp');
-        let minTemp;
-        for (const data of temp) {
-          if (data.textContent < minTemp || !minTemp) {
-            minTemp = data.textContent;
-            console.log(minTemp);
+         const tempCells = item.querySelectorAll('.temp');
+        let minTemp = Infinity;
+        for (const cell of tempCells) {
+           const value = parseFloat(cell.textContent);
+          if (!isNaN(value) && value < minTemp) {
+            minTemp = value;
           }
         }
-        for (const data of temp) {
-          if (minTemp == data.textContent) {
-            data.style.color = "red";
+        for (const cell of tempCells) {
+           const value = parseFloat(cell.textContent);
+          if (minTemp == value) {
+            cell.style.color = "red";
+            cell.style.fontWeight = "bold";
           }
         }
       }
