@@ -72,7 +72,7 @@
     async function getDistanceDuration(lonA, latA, lonB, latB, adA, adB) {
       try {
         const coordinates = `${lonA},${latA};${lonB},${latB}`;
-        status.textContent = `Calcul en cours de ${adA} à ${adB}`;
+        status.textContent = `Calcul en cours de ${adB} à ${adA}`;
         const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=false`);
         const result = await response.json();
         const route = result.routes[0];
