@@ -148,6 +148,7 @@ let missingPart;
     }
     mainThread();
     async function getShorter() {
+      console.log("GetShorter");
       const table = document.getElementById('tableau');
       const row = table.querySelectorAll("td");
       for (const item of row) {
