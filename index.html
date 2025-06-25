@@ -114,7 +114,7 @@
     
     function createPDF() {
         const now = new Date();
-        const nowFormatted = now.getDate() + now.getMonth() + now.getFullYear() + now.getHours() + now.getMinutes + now.getSeconds();
+        const nowFormatted = String(now.getDate()) + String(now.getMonth()) + String(now.getFullYear()) + String(now.getHours()) + String(now.getMinutes()) + String(now.getSeconds());
           console.log(nowFormatted);
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
