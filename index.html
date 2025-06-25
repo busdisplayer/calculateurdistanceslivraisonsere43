@@ -5,6 +5,7 @@
   <title>Comparateur de temps de livraison</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     table {
       border-collapse: collapse;
@@ -29,13 +30,14 @@
   </style>
 </head>
 <body>
-  <h1>Comparateur de temps de livraison</h1>
-  <table id="tableau">
+  <div class="w3-blue">
+  <h1>Comparateur de temps et distances de livraison</h1>
+  <table class="w3-table" id="tableau">
     <thead id="table-head"></thead>
     <tbody id="table-body"></tbody>
   </table>
-  <button style="display:none" id="createPDF" onclick="createPDF();">Générer le PDF</button>
-
+  <button class="w3-button w3-center" style="display:none" id="createPDF" onclick="createPDF();">Générer le PDF</button>
+</div>
   <script>
     let chaufferies = [];
     let plateformes = [];
