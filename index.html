@@ -183,14 +183,14 @@ let missingPart;
     
     async function getShorter() {
       console.log("GetShorter");
-     // const table = document.getElementById('tableau');
+     const table = document.getElementById('tableau');
       const rows = table.querySelectorAll("#tableau tbody tr");
       for (const row of rows) {
         const distCells = row.querySelectorAll('.dist');
         let minDist = Infinity;
         for (const cell of distCells) {
           const value = parseFloat(cell.textContent);
-          if (!isNaN(value) && val < minDist) {
+          if (!isNaN(value) && value < minDist) {
             minDist = value;
           }
         }
@@ -201,7 +201,7 @@ let missingPart;
             cell.style.fontWeight = "bold";
           }
         }
-         const tempCells = item.querySelectorAll('.temp');
+         const tempCells = row.querySelectorAll('.temp');
         let minTemp = Infinity;
         for (const cell of tempCells) {
            const value = parseFloat(cell.textContent);
