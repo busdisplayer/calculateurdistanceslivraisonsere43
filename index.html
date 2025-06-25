@@ -100,7 +100,7 @@
 
       // Pour chaque chaufferie
       for (const ch of chaufferies) {
-        const urlC = `https://www.google.com/maps/@${ch[1]},${ch[2]},5`;
+        const urlC = `https://www.google.com/maps/@${ch[1]},${ch[2]},5m`;
         let row = `<tr><td><a href=${urlC} target='_blank'>${ch[0]}</a></td>`;
         for (const pl of plateformes) {
           const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1]);
