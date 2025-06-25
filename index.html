@@ -122,7 +122,14 @@
           doc.autoTable({
             html: '#tableau',
             theme: 'grid',
-            headStyles: { fillColor: [22, 160, 133] }, // Couleur de l'en-tête
+            headStyles: { fillColor: [200, 200, 200], 
+                         halign:'center',
+                         valign:'middle'
+                        },
+            bodyStyles: {
+                          halign:'center',
+                         valign:'middle'
+            }
           });
       
           doc.save(`calculautomatiquedesdistances${nowFormatted}.pdf`);
