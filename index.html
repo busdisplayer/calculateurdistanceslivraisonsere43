@@ -85,7 +85,8 @@
       // Ligne 1 des en-têtes : vide + noms plateformes
       let headerRow1 = `<tr><th rowspan="2" class="main">Chaufferie</th>`;
       plateformes.forEach(p => {
-        headerRow1 += `<th colspan="2" class="main">${p[0]}</th>`;
+        const urlP = `https://www.google.com/maps/@${p[1]},${p[2]},15m`;
+        headerRow1 += `<th colspan="2" class="main"><a href="${urlP}" target="_blank">${p[0]}</a></th>`;
       });
       headerRow1 += `</tr>`;
 
@@ -100,7 +101,7 @@
 
       // Pour chaque chaufferie
       for (const ch of chaufferies) {
-        const urlC = `https://www.google.com/maps/@${ch[1]},${ch[2]},5m`;
+        const urlC = `https://www.google.com/maps/@${ch[1]},${ch[2]},15m`;
         let row = `<tr><td><a href=${urlC} target='_blank'>${ch[0]}</a></td>`;
         for (const pl of plateformes) {
           const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1]);
