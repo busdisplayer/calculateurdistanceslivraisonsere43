@@ -69,10 +69,10 @@
       }
     }
 
-    async function getDistanceDuration(lonA, latA, lonB, latB) {
+    async function getDistanceDuration(lonA, latA, lonB, latB, adA, adB) {
       try {
         const coordinates = `${lonA},${latA};${lonB},${latB}`;
-        status.textContent = `Calcul en cours de [${lonB},${latB}] à [${lonA},${latA}]`;
+        status.textContent = `Calcul en cours de ${adA} à ${adB}`;
         const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=false`);
         const result = await response.json();
         const route = result.routes[0];
@@ -110,7 +110,7 @@
         const urlC = `https://www.google.com/maps/@${ch[1]},${ch[2]},15m`;
         let row = `<tr><td><a href=${urlC} target='_blank'>${ch[0]}</a></td>`;
         for (const pl of plateformes) {
-          const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1]);
+          const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1], ch[0], pl[0]);
           row += `
             <td id="dist">${distance ? distance.toFixed(2) : "?"}</td>
             <td id="temp">${duration ? duration.toFixed(1) : "?"}</td>
