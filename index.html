@@ -55,7 +55,7 @@
 
     async function fetchPlateformes() {
       try {
-        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1clXfkqBSq5w9wYUW7ztSeLYMCjh9mZQGdXhMO${missingPart}/values/Plateformes!A:C?key=AIzaSyCZ_z9l9uecGSrVRdOD3ISnkte4ze${missingPartB}`);
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1clXfkqBSq5w9wYUW7ztSeLYMCjh9mZQGdXhMOs${missingPart}/values/Plateformes!A:C?key=AIzaSyCZ_z9l9uecGSrVRdOD3ISnkte4ze${missingPartB}`);
         const result = await response.json();
         plateformes = result.values;
         await createTable();
