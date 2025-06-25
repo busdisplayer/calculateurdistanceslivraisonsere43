@@ -158,12 +158,29 @@ let missingPart;
       const row = table.querySelectorAll("td");
       for (const item of row) {
         const dist = item.querySelectorAll('#dist');
-        // const temp = item.querySelectorAll('#temp');
         let minDist;
         for (const data of dist) {
           if (data.textContent < minDist || !minDist) {
             minDist = data.textContent;
             console.log(minDist);
+          }
+        }
+        for (const data of dist) {
+          if (minDist == data.textContent) {
+            data.style.color = "red";
+          }
+        }
+         const temp = item.querySelectorAll('#temp');
+        let minTemp;
+        for (const data of temp) {
+          if (data.textContent < minTemp || !minTemp) {
+            minTemp = data.textContent;
+            console.log(minTemp);
+          }
+        }
+        for (const data of temp) {
+          if (minTemp == data.textContent) {
+            data.style.color = "red";
           }
         }
       }
