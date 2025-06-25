@@ -101,9 +101,6 @@
       // Pour chaque chaufferie
       for (const ch of chaufferies) {
         let row = `<tr><td>${ch[0]}</td>`;
-        row.onclick = () => {
-          window.open(`https://www.google.com/maps/@${ch[1]},${ch[2]},5`,'_blank');
-        }
         for (const pl of plateformes) {
           const [distance, duration] = await getDistanceDuration(ch[2], ch[1], pl[2], pl[1]);
           row += `
@@ -112,6 +109,11 @@
           `;
         }
         row += `</tr>`;
+        
+        row.onclick = () => {
+          window.open(`https://www.google.com/maps/@${ch[1]},${ch[2]},5`,'_blank');
+        }
+        
         tbody.innerHTML += row;
       }
       document.getElementById('createPDF').style.display = "block";
