@@ -197,7 +197,7 @@ let missingPart;
         for (const cell of distCells) {
           const value = parseFloat(cell.textContent);
           if (minDist == value) {
-            cell.style.color = "red";
+            cell.style.color = "blue";
             cell.style.fontWeight = "bold";
           }
         }
@@ -212,7 +212,7 @@ let missingPart;
         for (const cell of tempCells) {
            const value = parseFloat(cell.textContent);
           if (minTemp == value) {
-            cell.style.color = "red";
+            cell.style.color = "green";
             cell.style.fontWeight = "bold";
           }
         }
