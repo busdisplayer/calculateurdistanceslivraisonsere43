@@ -113,6 +113,7 @@
         row += `</tr>`;
         tbody.innerHTML += row;
       }
+      await getShorter();
       document.getElementById('createPDF').style.display = "block";
     }
 let missingPart;
@@ -146,6 +147,21 @@ let missingPart;
           doc.save(`calculautomatiquedesdistances${nowFormatted}.pdf`);
     }
     mainThread();
+    async function getShorter() {
+      const table = document.getElementById('tableau');
+      const row = table.querySelectorAll("td");
+      for (const item of row) {
+        const dist = item.querySelectorAll('#dist');
+        // const temp = item.querySelectorAll('#temp');
+        let minDist;
+        for (const data of dist) {
+          if (data.textContent < minDist || !minDist) {
+            minDist = data.textContent;
+            console.log(minDist);
+          }
+        }
+      }
+    }
   </script>
 </body>
 </html>
